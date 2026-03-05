@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -26,12 +27,21 @@
         }
     </script>
     <style>
+        body { transition: background-color 0.5s ease, color 0.5s ease; }
+
+        /* Adaptive Grid Background */
         .bg-cell {
+            background-color: #f9f9f9;
+            background-image: 
+                linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .dark .bg-cell {
             background-color: #050505;
             background-image: 
                 linear-gradient(to right, #121212 1px, transparent 1px),
                 linear-gradient(to bottom, #121212 1px, transparent 1px);
-            background-size: 50px 50px;
         }
         
         .nav-blur {
@@ -39,9 +49,19 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
+        /* Adaptive Feature Cards */
         .feature-grid-item {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: linear-gradient(to bottom right, rgba(0,0,0,0.01), transparent);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .dark .feature-grid-item {
             border: 1px solid rgba(255, 255, 255, 0.03);
             background: linear-gradient(to bottom right, rgba(255,255,255,0.02), transparent);
+        }
+        .feature-grid-item:hover {
+            border-color: #00D1FF;
+            transform: translateY(-5px);
         }
 
         .status-pulse {
@@ -58,23 +78,43 @@
             50% { opacity: 0.4; transform: scale(1.2); }
             100% { opacity: 1; transform: scale(1); }
         }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
     </style>
 </head>
-<body class="bg-cell text-gray-400 font-sans antialiased">
+<body class="bg-cell text-gray-600 dark:text-gray-400 font-sans antialiased selection:bg-brand selection:text-black">
 
-    <nav class="sticky top-0 z-50 bg-dark/80 nav-blur border-b border-white/5">
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-dark/80 nav-blur border-b border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
-                <div class="h-10 w-10 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
-                    <img src="logo.png" alt="D" class="h-6 w-auto">
+                <div class="h-10 w-10 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
+                    <img src="logo.png" alt="D" class="h-6 w-auto dark:invert-0 invert">
                 </div>
-                <span class="text-2xl font-serif italic tracking-tighter text-white">Domab</span>
+                <span class="text-2xl font-serif italic tracking-tighter text-black dark:text-white">Domab</span>
             </a>
             
             <div class="hidden lg:flex items-center gap-10 text-[10px] uppercase font-bold tracking-[0.3em]">
                 <a href="about.html" class="hover:text-brand transition">About</a>
                 <a href="services.html" class="hover:text-brand transition">Services</a>
                 <a href="features.html" class="text-brand transition">Features</a>
+                
+                <button id="theme-toggle" class="p-2 text-black dark:text-white hover:bg-brand/10 rounded-full transition">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+
                 <a href="contact.html" class="px-5 py-2 border border-brand/50 text-brand hover:bg-brand hover:text-black transition-all">
                     Get in Touch
                 </a>
@@ -82,14 +122,14 @@
         </div>
     </nav>
 
-    <header class="pt-24 pb-12 px-6 md:px-12">
+    <header class="pt-24 pb-12 px-6 md:px-12 reveal">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center gap-3 mb-6">
                 <div class="status-pulse"></div>
                 <span class="text-[10px] font-mono text-brand uppercase tracking-widest">System Online: v.2.0.4</span>
             </div>
-            <h1 class="text-4xl md:text-6xl font-serif text-white mb-6">Network <span class="italic text-gray-500">Architecture</span></h1>
-            <p class="max-w-2xl text-sm font-light leading-relaxed">
+            <h1 class="text-4xl md:text-6xl font-serif text-black dark:text-white mb-6">Network <span class="italic text-gray-400 dark:text-gray-500">Architecture</span></h1>
+            <p class="max-w-2xl text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                 Detailed technical specifications of the Domab ecosystem. Engineered for low-latency utility distribution and absolute data sovereignty.
             </p>
         </div>
@@ -98,101 +138,101 @@
     <section class="py-12 px-6 md:px-12">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="feature-grid-item p-8">
+            <div class="feature-grid-item p-8 bg-white dark:bg-transparent reveal">
                 <p class="font-mono text-[10px] text-brand mb-6">// SECURITY_PROTOCOL</p>
-                <h3 class="text-white text-xl font-serif mb-4">Quantum-Resistant Vaults</h3>
+                <h3 class="text-black dark:text-white text-xl font-serif mb-4">Quantum-Resistant Vaults</h3>
                 <p class="text-xs leading-loose mb-6">
                     Every transaction is wrapped in multi-layer encryption, utilizing post-quantum cryptographic standards to ensure future-proof asset security.
                 </p>
-                <div class="pt-6 border-t border-white/5">
-                    <code class="text-[10px] text-gray-600">AES-256-GCM / SH-512</code>
+                <div class="pt-6 border-t border-black/5 dark:border-white/5">
+                    <code class="text-[10px] text-gray-400">AES-256-GCM / SH-512</code>
                 </div>
             </div>
 
-            <div class="feature-grid-item p-8">
+            <div class="feature-grid-item p-8 bg-white dark:bg-transparent reveal delay-100">
                 <p class="font-mono text-[10px] text-brand mb-6">// DATA_FLOW</p>
-                <h3 class="text-white text-xl font-serif mb-4">Atomic Settlements</h3>
+                <h3 class="text-black dark:text-white text-xl font-serif mb-4">Atomic Settlements</h3>
                 <p class="text-xs leading-loose mb-6">
                     Eliminate counterparty risk. Our atomic settlement layer ensures utility delivery and payment clearing happen simultaneously or not at all.
                 </p>
-                <div class="pt-6 border-t border-white/5">
-                    <code class="text-[10px] text-gray-600">LATENCY: < 12MS</code>
+                <div class="pt-6 border-t border-black/5 dark:border-white/5">
+                    <code class="text-[10px] text-gray-400">LATENCY: &lt; 12MS</code>
                 </div>
             </div>
 
-            <div class="feature-grid-item p-8">
+            <div class="feature-grid-item p-8 bg-white dark:bg-transparent reveal delay-200">
                 <p class="font-mono text-[10px] text-brand mb-6">// CONNECTIVITY</p>
-                <h3 class="text-white text-xl font-serif mb-4">Neural API Mesh</h3>
+                <h3 class="text-black dark:text-white text-xl font-serif mb-4">Neural API Mesh</h3>
                 <p class="text-xs leading-loose mb-6">
                     A self-healing API network that automatically reroutes requests during provider outages, maintaining a constant 99.99% service availability.
                 </p>
-                <div class="pt-6 border-t border-white/5">
-                    <code class="text-[10px] text-gray-600">UPTIME: 99.998%</code>
+                <div class="pt-6 border-t border-black/5 dark:border-white/5">
+                    <code class="text-[10px] text-gray-400">UPTIME: 99.998%</code>
                 </div>
             </div>
 
-            <div class="feature-grid-item p-8">
+            <div class="feature-grid-item p-8 bg-white dark:bg-transparent reveal">
                 <p class="font-mono text-[10px] text-brand mb-6">// UTILITY_LOGIC</p>
-                <h3 class="text-white text-xl font-serif mb-4">Smart Subscription Layer</h3>
+                <h3 class="text-black dark:text-white text-xl font-serif mb-4">Smart Subscription Layer</h3>
                 <p class="text-xs leading-loose mb-6">
                     Dynamic billing cycles that adapt to real-time consumption. Perfect for energy, data, and tiered digital service providers.
                 </p>
-                <div class="pt-6 border-t border-white/5">
-                    <code class="text-[10px] text-gray-600">LOGIC: DYNAMIC_SCALE</code>
+                <div class="pt-6 border-t border-black/5 dark:border-white/5">
+                    <code class="text-[10px] text-gray-400">LOGIC: DYNAMIC_SCALE</code>
                 </div>
             </div>
 
-            <div class="feature-grid-item p-8">
+            <div class="feature-grid-item p-8 bg-white dark:bg-transparent reveal delay-100">
                 <p class="font-mono text-[10px] text-brand mb-6">// INTERFACE</p>
-                <h3 class="text-white text-xl font-serif mb-4">Zero-Friction Checkout</h3>
+                <h3 class="text-black dark:text-white text-xl font-serif mb-4">Zero-Friction Checkout</h3>
                 <p class="text-xs leading-loose mb-6">
                     A headless commerce front-end designed to convert. Minimalist design meets maximalist performance for high-ticket digital assets.
                 </p>
-                <div class="pt-6 border-t border-white/5">
-                    <code class="text-[10px] text-gray-600">CONVERSION_OPTIMIZED</code>
+                <div class="pt-6 border-t border-black/5 dark:border-white/5">
+                    <code class="text-[10px] text-gray-400">CONVERSION_OPTIMIZED</code>
                 </div>
             </div>
 
-            <div class="feature-grid-item p-8">
+            <div class="feature-grid-item p-8 bg-white dark:bg-transparent reveal delay-200">
                 <p class="font-mono text-[10px] text-brand mb-6">// COMPLIANCE</p>
-                <h3 class="text-white text-xl font-serif mb-4">Global Sovereign Nodes</h3>
+                <h3 class="text-black dark:text-white text-xl font-serif mb-4">Global Sovereign Nodes</h3>
                 <p class="text-xs leading-loose mb-6">
                     Localized data processing to meet strict regional regulations, including GDPR, CCPA, and regional fintech mandates.
                 </p>
-                <div class="pt-6 border-t border-white/5">
-                    <code class="text-[10px] text-gray-600">REGION: MULTI_ZONE</code>
+                <div class="pt-6 border-t border-black/5 dark:border-white/5">
+                    <code class="text-[10px] text-gray-400">REGION: MULTI_ZONE</code>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 md:px-12">
+    <section class="py-24 px-6 md:px-12 reveal">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-center font-serif text-white text-2xl mb-12 italic">Comparative Analysis</h2>
+            <h2 class="text-center font-serif text-black dark:text-white text-2xl mb-12 italic">Comparative Analysis</h2>
             <div class="overflow-x-auto">
-                <table class="w-full text-left text-[10px] uppercase tracking-widest border border-white/5">
+                <table class="w-full text-left text-[10px] uppercase tracking-widest border border-black/5 dark:border-white/5">
                     <thead>
-                        <tr class="bg-white/5 text-brand">
-                            <th class="p-6 border-b border-white/10">Feature Set</th>
-                            <th class="p-6 border-b border-white/10">Legacy Systems</th>
-                            <th class="p-6 border-b border-white/10">Domab v2.0</th>
+                        <tr class="bg-black/5 dark:bg-white/5 text-brand">
+                            <th class="p-6 border-b border-black/10 dark:border-white/10">Feature Set</th>
+                            <th class="p-6 border-b border-black/10 dark:border-white/10 text-gray-400">Legacy Systems</th>
+                            <th class="p-6 border-b border-black/10 dark:border-white/10">Domab v2.0</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-500 font-bold">
-                        <tr>
-                            <td class="p-6 border-b border-white/5 text-white">Settlement Speed</td>
-                            <td class="p-6 border-b border-white/5">3-5 Days</td>
-                            <td class="p-6 border-b border-white/5 text-brand">Instant</td>
+                    <tbody class="text-gray-400 dark:text-gray-500 font-bold">
+                        <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition">
+                            <td class="p-6 border-b border-black/5 dark:border-white/5 text-black dark:text-white">Settlement Speed</td>
+                            <td class="p-6 border-b border-black/5 dark:border-white/5">3-5 Days</td>
+                            <td class="p-6 border-b border-black/5 dark:border-white/5 text-brand">Instant</td>
                         </tr>
-                        <tr>
-                            <td class="p-6 border-b border-white/5 text-white">Security Model</td>
-                            <td class="p-6 border-b border-white/5">Reactive</td>
-                            <td class="p-6 border-b border-white/5 text-brand">Proactive / AI</td>
+                        <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition">
+                            <td class="p-6 border-b border-black/5 dark:border-white/5 text-black dark:text-white">Security Model</td>
+                            <td class="p-6 border-b border-black/5 dark:border-white/5">Reactive</td>
+                            <td class="p-6 border-b border-black/5 dark:border-white/5 text-brand">Proactive / AI</td>
                         </tr>
-                        <tr>
-                            <td class="p-6 border-b border-white/5 text-white">API Integration</td>
-                            <td class="p-6 border-b border-white/5">Restricted</td>
-                            <td class="p-6 border-b border-white/5 text-brand">Open / Modular</td>
+                        <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition">
+                            <td class="p-6 border-b border-black/5 dark:border-white/5 text-black dark:text-white">API Integration</td>
+                            <td class="p-6 border-b border-black/5 dark:border-white/5">Restricted</td>
+                            <td class="p-6 border-b border-black/5 dark:border-white/5 text-brand">Open / Modular</td>
                         </tr>
                     </tbody>
                 </table>
@@ -200,27 +240,62 @@
         </div>
     </section>
 
-    <footer class="py-20 px-6 md:px-12 border-t border-white/5 bg-dark mt-20">
+    <footer class="py-20 px-6 md:px-12 border-t border-black/5 dark:border-white/5 bg-white dark:bg-dark mt-20">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <span class="text-2xl font-serif italic text-white">Domab</span>
+                    <span class="text-2xl font-serif italic text-black dark:text-white">Domab</span>
                 </div>
-                <p class="text-[10px] text-gray-600 uppercase tracking-widest">Architecting Digital Utility since 2024</p>
+                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Architecting Digital Utility since 2024</p>
             </div>
             
-            <div class="flex flex-wrap gap-8 md:gap-12 text-[10px] uppercase tracking-widest font-bold text-gray-500">
+            <div class="flex flex-wrap gap-8 md:gap-12 text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-gray-500">
                 <a href="#" class="hover:text-brand transition">Privacy</a>
                 <a href="#" class="hover:text-brand transition">Network Status</a>
                 <a href="#" class="hover:text-brand transition">Institutional</a>
                 <a href="#" class="hover:text-brand transition">API Docs</a>
             </div>
 
-            <div class="text-[10px] text-gray-700 uppercase tracking-[0.2em] font-mono">
+            <div class="text-[10px] text-gray-500 dark:text-gray-700 uppercase tracking-[0.2em] font-mono">
                 &copy; 2026 Domab Global.
             </div>
         </div>
     </footer>
 
+    <script>
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Dark/Light Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>

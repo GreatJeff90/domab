@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -25,53 +26,92 @@
         }
     </script>
     <style>
+        body { transition: background-color 0.5s ease, color 0.5s ease; }
+
+        /* Adaptive Grid Background */
         .bg-cell {
+            background-color: #f9f9f9;
+            background-image: 
+                linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .dark .bg-cell {
             background-color: #050505;
             background-image: 
                 linear-gradient(to right, #121212 1px, transparent 1px),
                 linear-gradient(to bottom, #121212 1px, transparent 1px);
-            background-size: 50px 50px;
         }
+
         .nav-blur {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
+
+        /* Form Styling - Adaptive */
         input, textarea {
+            background: rgba(0, 0, 0, 0.03) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            color: #1a1a1a !important;
+            transition: all 0.3s ease;
+        }
+        .dark input, .dark textarea {
             background: rgba(255, 255, 255, 0.03) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
             color: white !important;
-            transition: all 0.3s ease;
         }
         input:focus, textarea:focus {
             border-color: #00D1FF !important;
             outline: none;
             background: rgba(0, 209, 255, 0.02) !important;
         }
+
+        /* Map Styling - Adaptive */
         .map-container {
-            filter: grayscale(1) invert(1) contrast(1.2);
+            filter: grayscale(1) contrast(1.1);
             opacity: 0.6;
-            transition: opacity 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        .dark .map-container {
+            filter: grayscale(1) invert(1) contrast(1.2);
         }
         .map-container:hover {
             opacity: 0.9;
         }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
-<body class="bg-cell text-gray-400 font-sans antialiased">
+<body class="bg-cell text-gray-600 dark:text-gray-400 font-sans antialiased selection:bg-brand selection:text-black">
 
-    <nav class="sticky top-0 z-50 bg-dark/80 nav-blur border-b border-white/5">
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-dark/80 nav-blur border-b border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-4 group">
-                <div class="h-10 w-10 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
-                    <img src="logo.png" alt="D" class="h-6 w-auto">
+                <div class="h-10 w-10 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
+                    <img src="logo.png" alt="D" class="h-6 w-auto dark:invert-0 invert">
                 </div>
-                <span class="text-2xl font-serif italic tracking-tighter text-white">Domab</span>
+                <span class="text-2xl font-serif italic tracking-tighter text-black dark:text-white">Domab</span>
             </a>
             
             <div class="hidden lg:flex items-center gap-10 text-[10px] uppercase font-bold tracking-[0.3em]">
                 <a href="about.html" class="hover:text-brand transition">About</a>
                 <a href="services.html" class="hover:text-brand transition">Services</a>
                 <a href="features.html" class="hover:text-brand transition">Features</a>
+                
+                <button id="theme-toggle" class="p-2 text-black dark:text-white hover:bg-brand/10 rounded-full transition">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+
                 <a href="contact.html" class="text-brand transition">Get in Touch</a>
             </div>
         </div>
@@ -81,26 +121,26 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-20">
                 
-                <div>
-                    <h1 class="text-5xl md:text-7xl font-serif text-white mb-8">Let's <span class="italic text-gray-500">Connect.</span></h1>
-                    <p class="text-sm font-light leading-relaxed mb-12 max-w-md">
+                <div class="reveal">
+                    <h1 class="text-5xl md:text-7xl font-serif text-black dark:text-white mb-8">Let's <span class="italic text-gray-400 dark:text-gray-500">Connect.</span></h1>
+                    <p class="text-sm font-light leading-relaxed mb-12 max-w-md text-gray-500">
                         Initiate a formal inquiry regarding our general merchandise systems or architectural utility services.
                     </p>
 
                     <div class="space-y-10">
                         <div>
                             <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-2">Trade Type</p>
-                            <p class="text-white font-serif text-lg">General Merchandise</p>
+                            <p class="text-black dark:text-white font-serif text-lg">General Merchandise</p>
                         </div>
 
                         <div>
                             <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-2">Inquiries</p>
-                            <p class="text-white font-serif text-lg">0806 613 0420</p>
+                            <p class="text-black dark:text-white font-serif text-lg">0806 613 0420</p>
                         </div>
 
                         <div>
                             <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-2">Headquarters</p>
-                            <p class="text-white font-serif text-lg leading-relaxed">
+                            <p class="text-black dark:text-white font-serif text-lg leading-relaxed">
                                 23 Zion Street Omachi, Rumuodumaya,<br>
                                 Line 2: 16<br>
                                 Port Harcourt, Nigeria
@@ -109,7 +149,7 @@
 
                         <div>
                             <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-6">Social Grid</p>
-                            <div class="flex gap-6">
+                            <div class="flex gap-6 text-black dark:text-white">
                                 <a href="#" class="hover:text-brand transition-colors">
                                     <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                                 </a>
@@ -124,27 +164,27 @@
                     </div>
                 </div>
 
-                <div class="bg-surface border border-white/5 p-8 md:p-12">
+                <div class="bg-white dark:bg-surface border border-black/5 dark:border-white/5 p-8 md:p-12 reveal shadow-xl dark:shadow-none">
                     <form action="#" class="space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="space-y-2">
-                                <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Full Name</label>
+                                <label class="text-[9px] uppercase font-bold tracking-widest text-gray-400">Full Name</label>
                                 <input type="text" class="w-full px-4 py-4 text-sm font-light" placeholder="John Doe">
                             </div>
                             <div class="space-y-2">
-                                <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Email Address</label>
+                                <label class="text-[9px] uppercase font-bold tracking-widest text-gray-400">Email Address</label>
                                 <input type="email" class="w-full px-4 py-4 text-sm font-light" placeholder="contact@enterprise.com">
                             </div>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Subject</label>
+                            <label class="text-[9px] uppercase font-bold tracking-widest text-gray-400">Subject</label>
                             <input type="text" class="w-full px-4 py-4 text-sm font-light" placeholder="General Merchandise Inquiry">
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Message</label>
+                            <label class="text-[9px] uppercase font-bold tracking-widest text-gray-400">Message</label>
                             <textarea rows="5" class="w-full px-4 py-4 text-sm font-light" placeholder="Describe your requirement..."></textarea>
                         </div>
-                        <button class="w-full bg-white text-black py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-brand transition-all transform hover:-translate-y-1">
+                        <button class="w-full bg-black dark:bg-white text-white dark:text-black py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-brand hover:text-black transition-all transform hover:-translate-y-1">
                             Transmit Message
                         </button>
                     </form>
@@ -153,10 +193,10 @@
         </div>
     </section>
 
-    <section class="h-[400px] w-full border-y border-white/5 overflow-hidden">
+    <section class="h-[400px] w-full border-y border-black/5 dark:border-white/5 overflow-hidden reveal">
         <div class="map-container h-full w-full">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15901.442994964234!2d6.9856575!3d4.878411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069d2739343949f%3A0x6a0537021a60390a!2sRumuodumaya%2C%20Port%20Harcourt!5e0!3m2!1sen!2sng!4v1709665000000!5m2!1sen!2sng" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.327572352882!2d6.9833!3d4.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNTEnMDAuMCJOIDbCsDU5JzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1646480000000!5m2!1sen!2sng" 
                 width="100%" 
                 height="100%" 
                 style="border:0;" 
@@ -167,17 +207,52 @@
         </div>
     </section>
 
-    <footer class="py-20 px-6 md:px-12 bg-dark">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+    <footer class="py-20 px-6 md:px-12 bg-white dark:bg-dark border-t border-black/5 dark:border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
             <div>
-                <span class="text-2xl font-serif italic text-white">Domab</span>
-                <p class="text-[10px] text-gray-600 uppercase tracking-widest mt-2">Port Harcourt • Global</p>
+                <span class="text-2xl font-serif italic text-black dark:text-white">Domab</span>
+                <p class="text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-widest mt-2">Port Harcourt • Global</p>
             </div>
-            <div class="text-[10px] text-gray-700 uppercase tracking-[0.2em] font-mono">
-                &copy; 2026 Domab Global. Registered: General Merchandise.
+            <div class="text-[10px] text-gray-500 dark:text-gray-700 uppercase tracking-[0.2em] font-mono">
+                © 2026 Domab Global. Registered: General Merchandise.
             </div>
         </div>
     </footer>
 
+    <script>
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Dark/Light Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
