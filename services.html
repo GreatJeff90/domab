@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Domab - Enterprise Digital Capabilities</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: '#00D1FF', 
+                        dark: '#050505',
+                        surface: '#0A0A0A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-cell {
+            background-color: #050505;
+            background-image: 
+                linear-gradient(to right, #121212 1px, transparent 1px),
+                linear-gradient(to bottom, #121212 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .service-card {
+            background: linear-gradient(145deg, #0A0A0A 0%, #050505 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(0, 209, 255, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-cell text-gray-300 font-sans antialiased selection:bg-brand selection:text-black">
+
+    <nav class="sticky top-0 z-50 bg-dark/80 nav-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
+                <div class="h-10 w-10 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
+                    <img src="logo.png" alt="D" class="h-6 w-auto">
+                </div>
+                <span class="text-2xl font-serif italic tracking-tighter text-white">Domab</span>
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-10 text-[10px] uppercase font-bold tracking-[0.3em]">
+                <a href="about.html" class="hover:text-brand transition">About</a>
+                <a href="services.html" class="text-brand transition">Services</a>
+                <a href="features.html" class="hover:text-brand transition">Features</a>
+                <a href="contact.html" class="px-5 py-2 border border-brand/50 text-brand hover:bg-brand hover:text-black transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-16 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-brand text-[10px] font-bold uppercase tracking-[0.6em] mb-4">Service Catalog v2.6</p>
+            <h1 class="text-5xl md:text-8xl font-serif text-white mb-8">Capabilities.</h1>
+            <p class="text-gray-500 max-w-xl font-light leading-relaxed">
+                We provide the structural integrity required for modern utility processing and high-frequency digital commerce.
+            </p>
+        </div>
+    </header>
+
+    <section class="py-12 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="mb-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h2 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white">01 / Infrastructure</h2>
+                    <div class="flex-grow h-px bg-white/5"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-px bg-white/5 border border-white/5">
+                    <div class="service-card p-12">
+                        <h3 class="text-2xl font-serif text-white mb-6 italic">Utility Clearing House</h3>
+                        <p class="text-sm text-gray-500 leading-loose mb-8">
+                            High-speed automated processing for electricity, data, and telecommunication settlements. Our proprietary clearing engine ensures that micro-transactions are settled with institutional-grade accuracy.
+                        </p>
+                        <ul class="text-[9px] uppercase tracking-widest text-brand space-y-3 font-bold">
+                            <li>+ Real-time API Settlement</li>
+                            <li>+ Multi-provider Routing</li>
+                            <li>+ Automated Reconciliation</li>
+                        </ul>
+                    </div>
+                    <div class="service-card p-12">
+                        <h3 class="text-2xl font-serif text-white mb-6 italic">E-Commerce Core</h3>
+                        <p class="text-sm text-gray-500 leading-loose mb-8">
+                            A modular commerce engine designed for digital-first brands. Unlike legacy systems, Domab Core is optimized for digital asset delivery and recurring utility subscriptions.
+                        </p>
+                        <ul class="text-[9px] uppercase tracking-widest text-brand space-y-3 font-bold">
+                            <li>+ Dynamic Pricing Logic</li>
+                            <li>+ Global Tax Compliance</li>
+                            <li>+ Instant Asset Provisioning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-32">
+                <div class="flex items-center gap-6 mb-12">
+                    <h2 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white">02 / Intelligence</h2>
+                    <div class="flex-grow h-px bg-white/5"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="border border-white/5 bg-dark/40 p-10 hover:border-brand/20 transition-all">
+                        <h4 class="text-white font-serif text-xl mb-4">Edge Protection</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">Advanced DDoS mitigation and transaction-level encryption protocols that evolve with emerging threats.</p>
+                    </div>
+                    <div class="border border-white/5 bg-dark/40 p-10 hover:border-brand/20 transition-all">
+                        <h4 class="text-white font-serif text-xl mb-4">Usage Analytics</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">Deep-dive telemetry into utility consumption patterns and digital purchase behavior.</p>
+                    </div>
+                    <div class="border border-white/5 bg-dark/40 p-10 hover:border-brand/20 transition-all">
+                        <h4 class="text-white font-serif text-xl mb-4">Fraud Shield</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">AI-driven anomaly detection specifically calibrated for high-volume digital utility services.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto bg-brand/5 border border-brand/10 p-12 md:p-24 relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl">
+                <h2 class="text-4xl md:text-5xl font-serif text-white mb-8">Custom Architecture?</h2>
+                <p class="text-gray-400 mb-10 font-light italic">
+                    For institutional partners requiring bespoke nodes or private utility clusters, our engineering team provides white-glove architectural consulting.
+                </p>
+                <a href="contact.html" class="inline-block bg-white text-black px-10 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-brand transition-all">
+                    Consult with Engineering
+                </a>
+            </div>
+            <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-brand/10 to-transparent pointer-events-none"></div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 md:px-12 border-t border-white/5 bg-dark">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="text-2xl font-serif italic text-white">Domab</span>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest">Architecting Digital Utility since 2024</p>
+            </div>
+            
+            <div class="flex flex-wrap gap-8 md:gap-12 text-[10px] uppercase tracking-widest font-bold text-gray-500">
+                <a href="#" class="hover:text-brand transition">Privacy</a>
+                <a href="#" class="hover:text-brand transition">Network Status</a>
+                <a href="#" class="hover:text-brand transition">Institutional</a>
+                <a href="#" class="hover:text-brand transition">API Docs</a>
+            </div>
+
+            <div class="text-[10px] text-gray-700 uppercase tracking-[0.2em] font-mono">
+                &copy; 2026 Domab Global.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

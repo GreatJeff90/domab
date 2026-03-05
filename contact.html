@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Domab - Global Consultation</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: '#00D1FF', 
+                        dark: '#050505',
+                        surface: '#0A0A0A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-cell {
+            background-color: #050505;
+            background-image: 
+                linear-gradient(to right, #121212 1px, transparent 1px),
+                linear-gradient(to bottom, #121212 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .nav-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        input, textarea {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            border-color: #00D1FF !important;
+            outline: none;
+            background: rgba(0, 209, 255, 0.02) !important;
+        }
+        .map-container {
+            filter: grayscale(1) invert(1) contrast(1.2);
+            opacity: 0.6;
+            transition: opacity 0.5s ease;
+        }
+        .map-container:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="bg-cell text-gray-400 font-sans antialiased">
+
+    <nav class="sticky top-0 z-50 bg-dark/80 nav-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="h-10 w-10 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
+                    <img src="logo.png" alt="D" class="h-6 w-auto">
+                </div>
+                <span class="text-2xl font-serif italic tracking-tighter text-white">Domab</span>
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-10 text-[10px] uppercase font-bold tracking-[0.3em]">
+                <a href="about.html" class="hover:text-brand transition">About</a>
+                <a href="services.html" class="hover:text-brand transition">Services</a>
+                <a href="features.html" class="hover:text-brand transition">Features</a>
+                <a href="contact.html" class="text-brand transition">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20">
+                
+                <div>
+                    <h1 class="text-5xl md:text-7xl font-serif text-white mb-8">Let's <span class="italic text-gray-500">Connect.</span></h1>
+                    <p class="text-sm font-light leading-relaxed mb-12 max-w-md">
+                        Initiate a formal inquiry regarding our general merchandise systems or architectural utility services.
+                    </p>
+
+                    <div class="space-y-10">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-2">Trade Type</p>
+                            <p class="text-white font-serif text-lg">General Merchandise</p>
+                        </div>
+
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-2">Inquiries</p>
+                            <p class="text-white font-serif text-lg">0806 613 0420</p>
+                        </div>
+
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-2">Headquarters</p>
+                            <p class="text-white font-serif text-lg leading-relaxed">
+                                23 Zion Street Omachi, Rumuodumaya,<br>
+                                Line 2: 16<br>
+                                Port Harcourt, Nigeria
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.4em] text-brand mb-6">Social Grid</p>
+                            <div class="flex gap-6">
+                                <a href="#" class="hover:text-brand transition-colors">
+                                    <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </a>
+                                <a href="#" class="hover:text-brand transition-colors">
+                                    <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31 0 2.57.17 3.8.473.11.03.11.16.11.24a5.32 5.32 0 0 0 .52 2.1c.41.81 1.05 1.5 1.86 1.95.81.44 1.73.69 2.69.75.11.01.17.06.17.17v3.59c0 .11-.06.17-.17.17a8.77 8.77 0 0 1-5.07-1.62v6.61a6.62 6.62 0 0 1-6.62 6.62 6.62 6.62 0 0 1-6.62-6.62 6.62 6.62 0 0 1 6.62-6.62c.38 0 .74.04 1.1.1v3.4c-.35-.06-.72-.1-1.1-.1a3.22 3.22 0 0 0-3.22 3.22 3.22 3.22 0 0 0 3.22 3.22 3.22 3.22 0 0 0 3.22-3.22V.19c0-.11.06-.17.17-.17h2.9z"/></svg>
+                                </a>
+                                <a href="#" class="hover:text-brand transition-colors">
+                                    <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-white/5 p-8 md:p-12">
+                    <form action="#" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Full Name</label>
+                                <input type="text" class="w-full px-4 py-4 text-sm font-light" placeholder="John Doe">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Email Address</label>
+                                <input type="email" class="w-full px-4 py-4 text-sm font-light" placeholder="contact@enterprise.com">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Subject</label>
+                            <input type="text" class="w-full px-4 py-4 text-sm font-light" placeholder="General Merchandise Inquiry">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] uppercase font-bold tracking-widest text-gray-500">Message</label>
+                            <textarea rows="5" class="w-full px-4 py-4 text-sm font-light" placeholder="Describe your requirement..."></textarea>
+                        </div>
+                        <button class="w-full bg-white text-black py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-brand transition-all transform hover:-translate-y-1">
+                            Transmit Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-[400px] w-full border-y border-white/5 overflow-hidden">
+        <div class="map-container h-full w-full">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15901.442994964234!2d6.9856575!3d4.878411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069d2739343949f%3A0x6a0537021a60390a!2sRumuodumaya%2C%20Port%20Harcourt!5e0!3m2!1sen!2sng!4v1709665000000!5m2!1sen!2sng" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 md:px-12 bg-dark">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div>
+                <span class="text-2xl font-serif italic text-white">Domab</span>
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest mt-2">Port Harcourt • Global</p>
+            </div>
+            <div class="text-[10px] text-gray-700 uppercase tracking-[0.2em] font-mono">
+                &copy; 2026 Domab Global. Registered: General Merchandise.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

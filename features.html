@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | Domab - System Specifications</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: '#00D1FF', 
+                        dark: '#050505',
+                        surface: '#0A0A0A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-cell {
+            background-color: #050505;
+            background-image: 
+                linear-gradient(to right, #121212 1px, transparent 1px),
+                linear-gradient(to bottom, #121212 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .feature-grid-item {
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.02), transparent);
+        }
+
+        .status-pulse {
+            width: 8px;
+            height: 8px;
+            background: #00D1FF;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00D1FF;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-cell text-gray-400 font-sans antialiased">
+
+    <nav class="sticky top-0 z-50 bg-dark/80 nav-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
+                <div class="h-10 w-10 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-brand transition-colors">
+                    <img src="logo.png" alt="D" class="h-6 w-auto">
+                </div>
+                <span class="text-2xl font-serif italic tracking-tighter text-white">Domab</span>
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-10 text-[10px] uppercase font-bold tracking-[0.3em]">
+                <a href="about.html" class="hover:text-brand transition">About</a>
+                <a href="services.html" class="hover:text-brand transition">Services</a>
+                <a href="features.html" class="text-brand transition">Features</a>
+                <a href="contact.html" class="px-5 py-2 border border-brand/50 text-brand hover:bg-brand hover:text-black transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-24 pb-12 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="status-pulse"></div>
+                <span class="text-[10px] font-mono text-brand uppercase tracking-widest">System Online: v.2.0.4</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif text-white mb-6">Network <span class="italic text-gray-500">Architecture</span></h1>
+            <p class="max-w-2xl text-sm font-light leading-relaxed">
+                Detailed technical specifications of the Domab ecosystem. Engineered for low-latency utility distribution and absolute data sovereignty.
+            </p>
+        </div>
+    </header>
+
+    <section class="py-12 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="feature-grid-item p-8">
+                <p class="font-mono text-[10px] text-brand mb-6">// SECURITY_PROTOCOL</p>
+                <h3 class="text-white text-xl font-serif mb-4">Quantum-Resistant Vaults</h3>
+                <p class="text-xs leading-loose mb-6">
+                    Every transaction is wrapped in multi-layer encryption, utilizing post-quantum cryptographic standards to ensure future-proof asset security.
+                </p>
+                <div class="pt-6 border-t border-white/5">
+                    <code class="text-[10px] text-gray-600">AES-256-GCM / SH-512</code>
+                </div>
+            </div>
+
+            <div class="feature-grid-item p-8">
+                <p class="font-mono text-[10px] text-brand mb-6">// DATA_FLOW</p>
+                <h3 class="text-white text-xl font-serif mb-4">Atomic Settlements</h3>
+                <p class="text-xs leading-loose mb-6">
+                    Eliminate counterparty risk. Our atomic settlement layer ensures utility delivery and payment clearing happen simultaneously or not at all.
+                </p>
+                <div class="pt-6 border-t border-white/5">
+                    <code class="text-[10px] text-gray-600">LATENCY: < 12MS</code>
+                </div>
+            </div>
+
+            <div class="feature-grid-item p-8">
+                <p class="font-mono text-[10px] text-brand mb-6">// CONNECTIVITY</p>
+                <h3 class="text-white text-xl font-serif mb-4">Neural API Mesh</h3>
+                <p class="text-xs leading-loose mb-6">
+                    A self-healing API network that automatically reroutes requests during provider outages, maintaining a constant 99.99% service availability.
+                </p>
+                <div class="pt-6 border-t border-white/5">
+                    <code class="text-[10px] text-gray-600">UPTIME: 99.998%</code>
+                </div>
+            </div>
+
+            <div class="feature-grid-item p-8">
+                <p class="font-mono text-[10px] text-brand mb-6">// UTILITY_LOGIC</p>
+                <h3 class="text-white text-xl font-serif mb-4">Smart Subscription Layer</h3>
+                <p class="text-xs leading-loose mb-6">
+                    Dynamic billing cycles that adapt to real-time consumption. Perfect for energy, data, and tiered digital service providers.
+                </p>
+                <div class="pt-6 border-t border-white/5">
+                    <code class="text-[10px] text-gray-600">LOGIC: DYNAMIC_SCALE</code>
+                </div>
+            </div>
+
+            <div class="feature-grid-item p-8">
+                <p class="font-mono text-[10px] text-brand mb-6">// INTERFACE</p>
+                <h3 class="text-white text-xl font-serif mb-4">Zero-Friction Checkout</h3>
+                <p class="text-xs leading-loose mb-6">
+                    A headless commerce front-end designed to convert. Minimalist design meets maximalist performance for high-ticket digital assets.
+                </p>
+                <div class="pt-6 border-t border-white/5">
+                    <code class="text-[10px] text-gray-600">CONVERSION_OPTIMIZED</code>
+                </div>
+            </div>
+
+            <div class="feature-grid-item p-8">
+                <p class="font-mono text-[10px] text-brand mb-6">// COMPLIANCE</p>
+                <h3 class="text-white text-xl font-serif mb-4">Global Sovereign Nodes</h3>
+                <p class="text-xs leading-loose mb-6">
+                    Localized data processing to meet strict regional regulations, including GDPR, CCPA, and regional fintech mandates.
+                </p>
+                <div class="pt-6 border-t border-white/5">
+                    <code class="text-[10px] text-gray-600">REGION: MULTI_ZONE</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-center font-serif text-white text-2xl mb-12 italic">Comparative Analysis</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-[10px] uppercase tracking-widest border border-white/5">
+                    <thead>
+                        <tr class="bg-white/5 text-brand">
+                            <th class="p-6 border-b border-white/10">Feature Set</th>
+                            <th class="p-6 border-b border-white/10">Legacy Systems</th>
+                            <th class="p-6 border-b border-white/10">Domab v2.0</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-500 font-bold">
+                        <tr>
+                            <td class="p-6 border-b border-white/5 text-white">Settlement Speed</td>
+                            <td class="p-6 border-b border-white/5">3-5 Days</td>
+                            <td class="p-6 border-b border-white/5 text-brand">Instant</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 border-b border-white/5 text-white">Security Model</td>
+                            <td class="p-6 border-b border-white/5">Reactive</td>
+                            <td class="p-6 border-b border-white/5 text-brand">Proactive / AI</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 border-b border-white/5 text-white">API Integration</td>
+                            <td class="p-6 border-b border-white/5">Restricted</td>
+                            <td class="p-6 border-b border-white/5 text-brand">Open / Modular</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 md:px-12 border-t border-white/5 bg-dark mt-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="text-2xl font-serif italic text-white">Domab</span>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest">Architecting Digital Utility since 2024</p>
+            </div>
+            
+            <div class="flex flex-wrap gap-8 md:gap-12 text-[10px] uppercase tracking-widest font-bold text-gray-500">
+                <a href="#" class="hover:text-brand transition">Privacy</a>
+                <a href="#" class="hover:text-brand transition">Network Status</a>
+                <a href="#" class="hover:text-brand transition">Institutional</a>
+                <a href="#" class="hover:text-brand transition">API Docs</a>
+            </div>
+
+            <div class="text-[10px] text-gray-700 uppercase tracking-[0.2em] font-mono">
+                &copy; 2026 Domab Global.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
